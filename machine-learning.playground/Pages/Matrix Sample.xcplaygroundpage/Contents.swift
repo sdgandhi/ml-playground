@@ -31,7 +31,7 @@ do {
     print("Something went wrong!")
 }
 
-B *! C
+B *! C // Force multiply
 
 let E = Matrix.identity(4)
 E.row(0)
@@ -39,7 +39,7 @@ E.row(1)
 E.row(2)
 E.row(3)
 
-B == B *! Matrix.identity(B.columns)
+B == B *! Matrix.identity(B.columns) // Check identity
 
 var F = Matrix(array2d: [[1, 2, 3, 4], [5, 6, 7, 8]])
 F.row(0)

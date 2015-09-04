@@ -72,7 +72,7 @@ public func *(lhs: Matrix, rhs: Matrix) throws -> Matrix {
     return Matrix(array: productGrid, rows: lhs.rows, columns: rhs.columns)
 }
 
-infix operator *! { associativity left precedence 150 }
+infix operator *! { associativity left precedence 150 } // Force multiply
 public func *!(lhs: Matrix, rhs: Matrix) -> Matrix {
     assert(lhs.columns == rhs.rows, "Mismatched dimensions in matrix multiplication")
     
