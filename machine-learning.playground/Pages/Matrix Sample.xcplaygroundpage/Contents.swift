@@ -32,3 +32,11 @@ do {
 }
 
 B *! C
+
+let E = Matrix.identity(4)
+E.row(0)
+E.row(1)
+E.row(2)
+E.row(3)
+
+B == B *! Matrix.identity(B.columns)

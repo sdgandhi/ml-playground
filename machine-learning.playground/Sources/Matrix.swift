@@ -98,7 +98,7 @@ public func *!(lhs: Matrix, rhs: Matrix) -> Matrix {
 public struct Matrix: CustomStringConvertible, Equatable {
     private var grid: [Double]
     public let rows: Int, columns: Int
-    
+
     // MARK: Initializers
     public init(array: [Double], rows: Int, columns: Int) {
         
@@ -155,6 +155,15 @@ public struct Matrix: CustomStringConvertible, Equatable {
             assert(indexIsValidForRow(row, column: column), "Index out of range")
             grid[(row * columns) + column] = newValue
         }
+    }
+    
+    public static func identity(dimension: Int) -> Matrix {
+        
+        let grid = [Double](count: dimension * dimension, repeatedValue: 0)
+        var I = Matrix(array: grid, rows: dimension, columns: dimension)
+        for i in 0..<dimension { I[i, i] = 1 }
+        
+        return I
     }
     
     // MARK: Private methods
