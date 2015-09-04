@@ -30,3 +30,5 @@ do {
 } catch {
     print("Something went wrong!")
 }
+
+B *! C
