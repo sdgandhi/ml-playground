@@ -95,6 +95,20 @@ public func *!(lhs: Matrix, rhs: Matrix) -> Matrix {
     return Matrix(array: productGrid, rows: lhs.rows, columns: rhs.columns)
 }
 
+postfix operator |- {} // Transpose
+public postfix func |-(inout matrix: Matrix) -> Matrix {
+    
+    var T = Matrix(array: matrix.grid, rows: matrix.columns, columns: matrix.rows)
+    
+    for i in 0..<matrix.columns {
+        T.setRow(i, array: matrix.column(i))
+    }
+    
+    matrix = T
+    
+    return T
+}
+
 public struct Matrix: CustomStringConvertible, Equatable {
     private var grid: [Double]
     public let rows: Int, columns: Int
@@ -135,6 +149,15 @@ public struct Matrix: CustomStringConvertible, Equatable {
         return columnArray
     }
     
+    public mutating func setColumn(c: Int, array: [Double]) {
+        assert(self.columns > c, "Column index out of bounds.")
+        assert(self.rows == array.count, "Column length mismatch.")
+        
+        for i in 0..<self.rows {
+            self[i, c] = array[i]
+        }
+    }
+    
     public func row(r: Int) -> [Double] {
         assert(self.rows > r, "Row index out of bounds.")
         
@@ -144,6 +167,15 @@ public struct Matrix: CustomStringConvertible, Equatable {
         }
         
         return rowArray
+    }
+    
+    public mutating func setRow(r: Int, array: [Double]) {
+        assert(self.rows > r, "Row index out of bounds.")
+        assert(self.columns == array.count, "Row length mismatch")
+        
+        for i in 0..<self.columns {
+            self[r, i] = array[i]
+        }
     }
     
     public subscript(row: Int, column: Int) -> Double {

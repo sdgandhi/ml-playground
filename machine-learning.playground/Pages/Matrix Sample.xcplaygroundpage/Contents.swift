@@ -40,3 +40,12 @@ E.row(2)
 E.row(3)
 
 B == B *! Matrix.identity(B.columns)
+
+var F = Matrix(array2d: [[1, 2, 3, 4], [5, 6, 7, 8]])
+F.row(0)
+F.row(1)
+F|- // Transpose
+F.row(0)
+F.row(1)
+F.row(2)
+F.row(3)
