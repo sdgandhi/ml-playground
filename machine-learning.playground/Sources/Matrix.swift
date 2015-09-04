@@ -72,6 +72,29 @@ public func *(lhs: Matrix, rhs: Matrix) throws -> Matrix {
     return Matrix(array: productGrid, rows: lhs.rows, columns: rhs.columns)
 }
 
+infix operator *! { associativity left precedence 150 }
+public func *!(lhs: Matrix, rhs: Matrix) -> Matrix {
+    assert(lhs.columns == rhs.rows, "Mismatched dimensions in matrix multiplication")
+    
+    var productGrid = [Double]()
+    for i in 0..<lhs.rows {
+        let rowArray = lhs.row(i)
+        
+        for j in 0..<rhs.columns {
+            let columnArray = rhs.column(j)
+            
+            var products = [Double]()
+            for k in 0..<rowArray.count {
+                products.append(rowArray[k] * columnArray[k])
+            }
+            
+            productGrid.append(products.reduce(0) { $0 + $1 })
+        }
+    }
+    
+    return Matrix(array: productGrid, rows: lhs.rows, columns: rhs.columns)
+}
+
 public struct Matrix: CustomStringConvertible, Equatable {
     private var grid: [Double]
     public let rows: Int, columns: Int
