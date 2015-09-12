@@ -49,3 +49,11 @@ F.row(0)
 F.row(1)
 F.row(2)
 F.row(3)
+
+var G = Matrix(array2d: [[0, 3], [1, 4]])
+G|-
+
+var H = Matrix(array2d: [[1, 3, -1]])
+var I = Matrix(array: [2, 2, 4], rows: 3, columns: 1)
+
+H *! I
